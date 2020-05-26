@@ -5,7 +5,7 @@ import './theme.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-     <div className="loader" id="loader">
+     <div className="app-loader" id="loader">
       <img src="./loading.gif" />
     </div> 
     <App />

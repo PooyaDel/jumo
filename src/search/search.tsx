@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './search.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useHistory } from 'react-router-dom'
+import { searchByName } from '../service'
 interface SearchProps {
     onSearch?: (value: any) => void
 }
@@ -10,23 +11,30 @@ interface SearchProps {
 const Search = ({ onSearch }: SearchProps) => {
     const h = useHistory();
     let inputRef = React.createRef<HTMLInputElement>();
-
+    let { searchParam } = useParams();
+    const [textValue, setTextValue] = useState('');
     const updateSearchValue = () => {
         h.push({ pathname: `/search/${inputRef.current?.value}` });
         onSearch?.(inputRef.current?.value);
     }
 
-    const keyPress = (event: any ) => {
+    const handleChange = (event: any) => (setTextValue(event.target.value));
+
+    useEffect(() => {
+        setTextValue(searchParam);
+    }, [searchParam]);
+
+    const keyPress = (event: any) => {
         const code = event.keyCode || event.which;
-        if( code !== 13 ){
+        if (code !== 13) {
             return;
         }
         updateSearchValue();
     }
 
     return <div className={styles.search}>
-        <input type="text" placeholder="Search" ref={inputRef} onKeyPress={keyPress}
-  />
+        <input type="text" placeholder="Search" value={textValue} ref={inputRef} onChange={handleChange} onKeyPress={keyPress}
+        />
         <FontAwesomeIcon icon={faSearch} className={styles.icon} onClick={updateSearchValue} />
     </div>
 }

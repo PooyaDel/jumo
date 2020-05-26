@@ -8,12 +8,12 @@ const App = () => {
   return (
     <HashRouter hashType={"slash"}>
       <div className={styles.container}>
-        <Search />
         <Switch>
           <Route path="/movie/:id">
             <MovieDetail />
           </Route>
           <Route path="/search/:searchParam?">
+            <Search />
             <MovieList />
           </Route>
           <Redirect from="/" to="/search/"></Redirect>
