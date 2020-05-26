@@ -12,7 +12,6 @@ api.interceptors.request.use((config) => {
     config.headers['Content-Type'] = 'application/json';
     return config;
 }, (error) => {
-    document.getElementById('loader')?.classList.remove('loading');
     return Promise.reject(error);
 });
 

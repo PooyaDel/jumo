@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './movie-list.module.scss'
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory, Router, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { searchByName, getPopularList, sortByPopularityDesc } from '../service';
 
@@ -13,15 +13,33 @@ const MovieList = ({ query, sortByMostPopular }: MovielistProps) => {
     const [data, setData] = useState([]);
     let { searchParam } = useParams();
     searchParam = query || searchParam;
+    const h = useHistory();
 
     const getMovieList = async (query: string) => {
+        document.getElementById('loader')?.classList.add('loading');
+        let result: Array<any> = [];
         if (query) {
-            const result = await searchByName(searchParam);
-            setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
+            await searchByName(searchParam)
+                .then(res => {
+                    result = res[0].data.results.concat(res[1].data.results);
+                    setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
+                })
+                .catch(e => {
+                    h.push({ pathname: `/error` });
+                });
         } else {
-            const result = await getPopularList();
-            setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
+            await getPopularList()
+                .then(res => {
+                    result = res.data.results;
+                    setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
+
+                })
+                .catch(e => {
+                    h.push({ pathname: `/error` });
+                });
         }
+
+        document.getElementById('loader')?.classList.remove('loading');
         console.log(data);
     }
 

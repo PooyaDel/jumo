@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from "./App.module.scss";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import Search from '../search/search';
 import MovieList from '../movie-list/movie-list';
 import MovieDetail from '../movie-detail/movie-detail';
+import AppError from '../error';
 const App = () => {
   return (
     <HashRouter hashType={"slash"}>
@@ -16,7 +17,10 @@ const App = () => {
             <Search />
             <MovieList />
           </Route>
-          <Redirect from="/" to="/search/"></Redirect>
+          <Redirect exact from="/" to="/search/"></Redirect>
+          <Route path="/error">
+            <AppError />
+          </Route>
         </Switch>
       </div>
     </HashRouter>
