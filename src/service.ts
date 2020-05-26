@@ -20,7 +20,7 @@ export const searchByName = async (query: string) => {
     return response[0].data.results.concat(response[1].data.results);
 }
 
-export const sortByPopularity = (result: any) => {
+export const sortByPopularityDesc = (result: any) => {
     result = result.sort((m1: any, m2: any) => {
         if (m1.popularity < m2.popularity) {
             return 1;

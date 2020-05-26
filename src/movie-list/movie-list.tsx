@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './movie-list.module.scss'
 import { useParams, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { searchByName, getPopularList, sortByPopularity } from '../service';
+import { searchByName, getPopularList, sortByPopularityDesc } from '../service';
 
 interface MovielistProps {
     query?: string;
@@ -17,10 +17,10 @@ const MovieList = ({ query, sortByMostPopular }: MovielistProps) => {
     const getMovieList = async (query: string) => {
         if (query) {
             const result = await searchByName(searchParam);
-            setData(sortByMostPopular ? sortByPopularity(result) : result);
+            setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
         } else {
             const result = await getPopularList();
-            setData(sortByMostPopular ? sortByPopularity(result) : result);
+            setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
         }
         console.log(data);
     }
