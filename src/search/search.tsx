@@ -12,16 +12,18 @@ const Search = ({ onSearch }: SearchProps) => {
     const h = useHistory();
     let inputRef = React.createRef<HTMLInputElement>();
     let { searchParam } = useParams();
-    const [textValue, setTextValue] = useState(undefined);
+    const [textValue, setTextValue] = useState('');
     const updateSearchValue = () => {
         h.push({ pathname: `/search/${inputRef.current?.value}` });
         onSearch?.(inputRef.current?.value);
     }
 
-    const handleChange = (event: any) => (setTextValue(event.target.value));
+    const handleChange = (event: any) => {
+        setTextValue(event.target.value);
+    };
 
     useEffect(() => {
-        setTextValue(searchParam || undefined);
+        setTextValue(searchParam);
     }, [searchParam]);
 
     const keyPress = (event: any) => {
@@ -33,7 +35,7 @@ const Search = ({ onSearch }: SearchProps) => {
     }
 
     return <div className={styles.search}>
-        <input type="text" placeholder="Search" value={textValue} ref={inputRef} onChange={handleChange} onKeyPress={keyPress} />
+        <input type="text" placeholder="Search" value={textValue || ''} ref={inputRef} onChange={handleChange} onKeyPress={keyPress} />
         <FontAwesomeIcon icon={faSearch} className={styles.icon} onClick={updateSearchValue} />
     </div>
 }
