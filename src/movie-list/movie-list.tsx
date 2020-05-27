@@ -15,7 +15,7 @@ const MovieList = ({ query, sortByMostPopular }: MovielistProps) => {
     searchParam = query || searchParam;
     const h = useHistory();
 
-    const getMovieList = async (query: string) => {
+    const getTitlesList = async (query: string) => {
         document.getElementById('loader')?.classList.add('loading');
         let result: Array<any> = [];
         query ? await searchByName(searchParam)
@@ -36,14 +36,14 @@ const MovieList = ({ query, sortByMostPopular }: MovielistProps) => {
     }
 
     useEffect(() => {
-        getMovieList(searchParam);
+        getTitlesList(searchParam);
     }, [searchParam]);
 
     const renderList = () => {
         return data.map((m: any, index: number) => {
-            return <Link className={styles.row} key={index} to={`/movie/${m.id}`}>
+            return <Link className={styles.row} key={index} to={`/title/${m.id}`}>
                 <div> {m.vote_average} </div>
-                <div> <img src={m.poster_path ? `https://image.tmdb.org/t/p/w500/${m.poster_path}` : './no-image.jpg'} alt="Image unavailable" />  </div>
+                <div> <img src={m.poster_path ? `${process.env.REACT_APP_IMG_BASE_URL}${m.poster_path}` : './no-image.jpg'} alt="Image unavailable" />  </div>
                 <div> {m.title || m.name} </div>
             </Link>
         });

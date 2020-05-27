@@ -5,6 +5,10 @@ export const getPopularList = () => {
     return api.get(`/movie/popular`);
 }
 
+export const getTitleDetails = (id: number) => {
+    return api.get(`/movie/${id}`);
+}
+
 export const searchByName = (query: string) => {
     const params = { query };
     return Axios.all([
