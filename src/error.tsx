@@ -6,7 +6,9 @@ interface ErrorProps {
 
 const AppError = ({ details }: ErrorProps) => {
   return (<div className={styles.error}>
-    hiiiiiiiiiiiiiiiiiiiiiii
+    Error!
+    <br/>
+    please check console log for more details.
   </div>);
 }
 export default AppError;
