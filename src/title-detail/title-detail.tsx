@@ -64,9 +64,7 @@ const TitleDetail = ({ }: TitleDetailProps) => {
                 <div >
                     {convertToHour(data?.runtime)}
                 </div>
-                <div>
 
-                </div>
             </div>
         </div>
         <div className={styles.overView} >Overview</div>
