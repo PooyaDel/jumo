@@ -43,9 +43,15 @@ const TitleDetail = ({ }: TitleDetailProps) => {
     return id ? <div className={styles.titledetail}>
         <div className={styles.backdrop}>
             <FontAwesomeIcon icon={faArrowLeft} onClick={goBack} />
-            <img src={`${process.env.REACT_APP_IMG_BASE_URL}${data?.backdrop_path}`} alt="" /></div>
+            {data?.backdrop_path ?
+                <img src={`${process.env.REACT_APP_IMG_BASE_URL}${data?.backdrop_path}`} alt="" />
+                : <img src={'./no-image.jpg'} alt="" />
+            }
+        </div>
         <div className={styles.poster}>
-            <img src={`${process.env.REACT_APP_IMG_BASE_URL}${data?.poster_path}`} alt="" />
+            {data?.poster_path ? <img src={`${process.env.REACT_APP_IMG_BASE_URL}${data?.poster_path}`} alt="" />
+                : <img src={'./no-image.jpg'} alt="" />
+            }
             <div className={styles.title}>{data?.title}
                 <div>
                     <div className={styles.rdate}> {data?.release_date ? new Date(data?.release_date).getFullYear() : 'N/A'}</div>
