@@ -3,7 +3,6 @@ import styles from './search.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useHistory } from 'react-router-dom'
-import { searchByName } from '../service'
 interface SearchProps {
     onSearch?: (value: any) => void
 }

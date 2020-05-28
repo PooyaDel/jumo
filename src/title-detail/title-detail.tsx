@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './title-detail.module.scss'
 import { useParams, useHistory } from 'react-router-dom';
-import { searchByName, sortByPopularityDesc, getTitleDetails } from '../service';
-import { any } from 'prop-types';
-import { faBackward, faArrowCircleLeft, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { getTitleDetails } from '../service';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface TitleDetailProps {
@@ -29,7 +28,7 @@ const TitleDetail = ({ }: TitleDetailProps) => {
         await getTitleDetails(id)
             .then((res: any) => {
                 setData(res.data);
-            }).catch(e => (h.push({ pathname: `/error` })))
+            }).catch(() => (h.push({ pathname: `/error` })))
 
         document.getElementById('loader')?.classList.remove('loading');
     }
