@@ -34,5 +34,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## A word
 Thank you for the opportunity! 
-I would like to say that although React is not my #1 in terms of UI development experience, I chose to do it in react hoping  it is appreciated that I have no problem learning new things regardless of what they are and I am willing to take risks.
+I would like to say that although React is not my #1 in terms of UI development experience, I chose to do it in react hoping  it is appreciated that I have no problem taking risks.
 ANY feedback will be highly appreciated. 
