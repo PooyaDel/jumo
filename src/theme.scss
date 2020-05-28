@@ -1,6 +1,19 @@
 $color-text-primary: #45d176;
 $color-rank-primary: white;
 $color-box-shadow-primary: rgba(0, 0, 0, 0.69);
+$full-header-font-size: 64px;
+$mobile-header-font-size: 32px;
+$full-text-font-size: 32px;
+$mobile-text-font-size: 16px;
+$mobile-maxwidth: 600px;
+
+//same story goes for tablet , I just didn't want to over-cook the solution
+@mixin mobile{
+	@media only screen and (max-width: $mobile-maxwidth){
+	  @content;
+	}
+  }
+
 body {
 	background: rgb(0, 6, 36);
 	background: linear-gradient(90deg, rgba(0, 6, 36, 1) 0%, rgba(17, 52, 76, 1) 47%, rgba(11, 27, 35, 1) 100%);

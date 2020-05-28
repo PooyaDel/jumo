@@ -21,18 +21,15 @@ const MovieList = ({ query, sortByMostPopular }: MovielistProps) => {
         query ? await searchByName(searchParam)
             .then(res => {
                 result = res[0].data.results.concat(res[1].data.results);
-                console.log(result);
                 setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
             }).catch(e => (h.push({ pathname: `/error` })))
             : await getPopularList()
                 .then(res => {
                     result = res.data.results;
-                    console.log(result);
                     setData(sortByMostPopular ? sortByPopularityDesc(result) : result);
                 }).catch(e => (h.push({ pathname: `/error` })));
 
         document.getElementById('loader')?.classList.remove('loading');
-        console.log(data);
     }
 
     useEffect(() => {
