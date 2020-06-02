@@ -31,8 +31,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## A word
-Thank you for the opportunity! 
-I would like to say that although React is not my #1 in terms of UI development experience, I chose to do it in react hoping  it is appreciated that I have no problem taking risks.
-ANY feedback will be highly appreciated. 
